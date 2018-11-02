@@ -5,5 +5,5 @@ package airportSecurityState.util;
  *
  */
 public interface StdoutDisplayInterface {
-
+	public void displayStdOut(String s);
 }
