@@ -2,6 +2,9 @@ package airportSecurityState.driver;
 
 import java.io.File;
 
+import airportSecurityState.airportStates.Calculations;
+import airportSecurityState.airportStates.Manager;
+import airportSecurityState.util.FileProcessor;
 import airportSecurityState.util.MyLogger;
 
 /**
@@ -54,8 +57,9 @@ public class Driver {
 			int debugLevel = Integer.parseInt(args[2]);
 			
 			MyLogger.setDebugValue(debugLevel);
-			
-			
+			FileProcessor fp= new FileProcessor(inputFile);
+			Manager ap= new Manager(fp);
+			ap.start();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -10,16 +10,17 @@ public class MyLogger {
     public static enum DebugLevel { NONE ,
     	CONTENT_OF_RESULT, 
     	STATE_CHANGE,
-    	PROHIBITED_ITEMS};
+    	PROHIBITED_ITEMS,
+    	CONSTRUCTOR};
 
     private static DebugLevel debugLevel;
    
     public static void setDebugValue (int levelIn) {
 		switch (levelIn) 
 		{
-//			case 4: 
-//				debugLevel = DebugLevel.CONSTRUCTOR; 
-//				break;
+			case 4: 
+				debugLevel = DebugLevel.CONSTRUCTOR; 
+				break;
 			case 3: 
 				debugLevel = DebugLevel.PROHIBITED_ITEMS; 
 				break;
