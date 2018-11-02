@@ -2,6 +2,8 @@ package airportSecurityState.driver;
 
 import java.io.File;
 
+import airportSecurityState.util.MyLogger;
+
 /**
  * @author Aaditya Sakharam Patil
  *
@@ -20,16 +22,16 @@ public class Driver {
 			 * argument value is not given java takes the default value specified in
 			 * build.xml. To avoid that, below condition is used
 			 */
-			if (args.length != 3 || args[0].equals("${arg0}") || args[1].equals("${arg1}") || args[2].equals("${arg2}") || args[3].equals("${arg3}") || args[4].equals("${arg4}" )) 
+			if (args.length != 3 || args[0].equals("${arg0}") || args[1].equals("${arg1}") || args[2].equals("${arg2}")) 
 			{
-				System.err.println("Error: Incorrect number of arguments. Program accepts 5 argumnets.");
+				System.err.println("Error: Incorrect number of arguments. Program accepts 3 argumnets.");
 				System.exit(1);
 			}
 			
 			/**
 			 *argument validation
-			 *check if file exists
-			 *check if input and delete files are empty
+			 *check if input file exists
+			 *check if input is empty
 			 */
 			File file1 = new File(args[0]);
 			if (!file1.exists()) 
@@ -49,7 +51,9 @@ public class Driver {
 			 */
 			String inputFile=args[0];
 			String outputFile = args[1];
-			int output1 = Integer.parseInt(args[2]);
+			int debugLevel = Integer.parseInt(args[2]);
+			
+			MyLogger.setDebugValue(debugLevel);
 			
 			
 		}
