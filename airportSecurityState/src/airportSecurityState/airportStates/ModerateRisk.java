@@ -7,17 +7,24 @@ public class ModerateRisk implements AirportStateI {
 	
 	Manager currentState;
 	Results res;
-	public ModerateRisk(Manager currentStateIn, Results resIn) {
+	Calculations cal;
+	float averageProhibitedItemsPerDay;
+	float averageTrafficPerDay;
+		
+	public ModerateRisk(Manager currentStateIn, Results resIn,Calculations calIn) {
 		MyLogger.writeMessage("Constructor of ModerateRisk called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.currentState = currentStateIn;
 		this.res= resIn;
-        
+        this.cal= calIn;
 	}
 
 	@Override
-	public void increaseOrDecreaseSecurity(float averageTrafficPerDay,float averageProhibitedItemsPerDay) 
+	public void increaseOrDecreaseSecurity(String currentline) 
 	{
 		try {
+			cal.getMetrics(currentline);	
+			averageTrafficPerDay= cal.getAvgTrafficPerDay();
+			averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
 			
 			if((averageTrafficPerDay>=8) || (averageProhibitedItemsPerDay>=4))
 			{

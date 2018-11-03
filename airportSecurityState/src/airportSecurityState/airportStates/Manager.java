@@ -1,7 +1,5 @@
 package airportSecurityState.airportStates;
 
-import java.io.IOException;
-
 import airportSecurityState.util.FileProcessor;
 import airportSecurityState.util.MyLogger;
 import airportSecurityState.util.Results;
@@ -15,8 +13,7 @@ public class Manager {
     FileProcessor fp;
     Results res;
     Calculations cal;
-    float averageProhibitedItemsPerDay;
-	float averageTrafficPerDay;
+   
 	
     
 	public AirportStateI getHigh() {
@@ -72,9 +69,9 @@ public class Manager {
 		this.fp=fpIn;
 		this.res= resIn;
 		cal= new Calculations();
-		low = new LowRisk(this,res);
-		moderate = new ModerateRisk(this,res);
-		high = new HighRisk(this,res);
+		low = new LowRisk(this,res,cal);
+		moderate = new ModerateRisk(this,res,cal);
+		high = new HighRisk(this,res,cal);
 		currentState=low;
 		
 		
@@ -87,10 +84,8 @@ public class Manager {
 			String currentline;
 			while ((currentline = fp.readInputLine()) != null) 
 			{
-				cal.getMetrics(currentline);	
-				averageTrafficPerDay= cal.getAvgTrafficPerDay();
-				averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
-				currentState.increaseOrDecreaseSecurity(averageTrafficPerDay,averageProhibitedItemsPerDay);
+				
+				currentState.increaseOrDecreaseSecurity(currentline);
 			}
 		}
 		catch(Exception e) {
