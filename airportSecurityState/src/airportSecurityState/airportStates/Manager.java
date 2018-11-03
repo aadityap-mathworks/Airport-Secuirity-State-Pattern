@@ -10,7 +10,10 @@ public class Manager {
     AirportStateI currentState;
     FileProcessor fp;
     Calculations cal;
-
+    float averageProhibitedItemsPerDay;
+	float averageTrafficPerDay;
+	
+    
 	public AirportStateI getHigh() {
 		return high;
 	}
@@ -45,16 +48,28 @@ public class Manager {
 		this.low = low;
 	}
 
+ 
 
+	public AirportStateI getCurrentState() {
+		return currentState;
+	}
+
+
+
+	public void setCurrentState(AirportStateI currentState) {
+		this.currentState = currentState;
+	}
+	
 
 	public Manager(FileProcessor fpIn) {
 		
 		this.fp=fpIn;
-		cal =new Calculations(fp);
+		cal= new Calculations();
 		high = new HighRisk(this);
 		low = new LowRisk(this);
 		moderate = new ModerateRisk(this);
 		currentState=low;
+		
 		
 	}
 	
@@ -65,8 +80,10 @@ public class Manager {
 			String currentline;
 			while ((currentline = fp.readInputLine()) != null) 
 			{
-				System.out.println(currentline);
-				
+				cal.getMetrics(currentline);	
+				averageTrafficPerDay= cal.getAvgTrafficPerDay();
+				averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
+				currentState.increaseOrDecreaseSecurity(averageTrafficPerDay,averageProhibitedItemsPerDay);
 			}
 		}
 		catch(Exception e) {
@@ -79,9 +96,8 @@ public class Manager {
 		
 		
 	}
-	
-	
-	
+
+
 	
 
 }
