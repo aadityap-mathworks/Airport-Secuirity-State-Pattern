@@ -6,6 +6,7 @@ import airportSecurityState.airportStates.Calculations;
 import airportSecurityState.airportStates.Manager;
 import airportSecurityState.util.FileProcessor;
 import airportSecurityState.util.MyLogger;
+import airportSecurityState.util.Results;
 
 /**
  * @author Aaditya Sakharam Patil
@@ -58,8 +59,10 @@ public class Driver {
 			
 			MyLogger.setDebugValue(debugLevel);
 			FileProcessor fp= new FileProcessor(inputFile);
-			Manager ap= new Manager(fp);
+			Results res = new Results(outputFile);
+			Manager ap= new Manager(fp,res);
 			ap.start();
+			res.writeToFile();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

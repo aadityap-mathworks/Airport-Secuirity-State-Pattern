@@ -55,7 +55,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	 * method to store results
 	 *
 	 */
-	public void finalResult(String res)
+	public void addToFinalResult(String res)
 	{
 		finalList.add(res);
 	}
@@ -73,7 +73,10 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 			 
 			out= new File(outputFile);
 			fw = new FileWriter(out);
-			fw.write(finalList+"\n");
+			for(int i =0 ; i<finalList.size();i++)
+			{				
+				fw.write(finalList.get(i)+"\n");
+			}
 		}
 		catch (Exception e){
 			e.printStackTrace();

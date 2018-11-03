@@ -1,6 +1,7 @@
 package airportSecurityState.airportStates;
 
 import airportSecurityState.util.FileProcessor;
+import airportSecurityState.util.Results;
 
 public class Manager {
 
@@ -9,6 +10,7 @@ public class Manager {
     AirportStateI low;
     AirportStateI currentState;
     FileProcessor fp;
+    Results res;
     Calculations cal;
     float averageProhibitedItemsPerDay;
 	float averageTrafficPerDay;
@@ -61,13 +63,14 @@ public class Manager {
 	}
 	
 
-	public Manager(FileProcessor fpIn) {
+	public Manager(FileProcessor fpIn, Results resIn) {
 		
 		this.fp=fpIn;
+		this.res= resIn;
 		cal= new Calculations();
-		high = new HighRisk(this);
-		low = new LowRisk(this);
-		moderate = new ModerateRisk(this);
+		high = new HighRisk(this,res);
+		low = new LowRisk(this,res);
+		moderate = new ModerateRisk(this,res);
 		currentState=low;
 		
 		
