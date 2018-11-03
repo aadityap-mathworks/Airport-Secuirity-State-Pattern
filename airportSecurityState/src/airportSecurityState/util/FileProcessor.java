@@ -21,12 +21,13 @@ public class FileProcessor
 	public FileProcessor(String filename)
 	{
 		try {
+			MyLogger.writeMessage("Constructor of FileProcessor called ", MyLogger.DebugLevel.CONSTRUCTOR);
 			File input = new File(filename);
 			inputReader = new BufferedReader(new FileReader(input));
 		}
 		catch(IOException e){
-		    e.printStackTrace();
-		    System.exit(1);
+			MyLogger.writeMessage("Exception occured in Constructor of FileProcessor class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+			System.exit(1);
 		}
 		finally{ 
 		}
@@ -50,9 +51,9 @@ public class FileProcessor
 				}
 			} catch (IOException ex)
 	        {
-	            System.out.println("Error occureed while reading the file '");
-	            ex.printStackTrace();
-	            System.exit(0);
+				MyLogger.writeMessage("Exception occured while reading line"
+						+ "in FileProcessor class \n"+ex.toString(), MyLogger.DebugLevel.NONE);
+				System.exit(1);
 	
 	        }	
 			finally {
@@ -68,7 +69,8 @@ public class FileProcessor
 	    	try{
 		    inputReader.close();
 	    	}catch(IOException e){
-		    e.printStackTrace();
+	    		MyLogger.writeMessage("Exception occured while closing input reader in FileProcessor class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+				System.exit(1);
 	    	}
 	    	finally {}
 	}

@@ -3,12 +3,12 @@ package airportSecurityState.util;
 public class MyLogger {
 
 	private MyLogger() {
-//		/MyLogger.writeMessage("Constructor of MyLogger is called", MyLogger.DebugLevel.CONSTRUCTOR);
+		MyLogger.writeMessage("Constructor of MyLogger called ", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 	
 
     public static enum DebugLevel { NONE ,
-    	CONTENT_OF_RESULT, 
+    	ENTRY_IN_RESULT, 
     	STATE_CHANGE,
     	PROHIBITED_ITEMS,
     	CONSTRUCTOR};
@@ -28,7 +28,7 @@ public class MyLogger {
 				debugLevel = DebugLevel.STATE_CHANGE; 
 				break;
 			case 1: 
-				debugLevel = DebugLevel.CONTENT_OF_RESULT; 
+				debugLevel = DebugLevel.ENTRY_IN_RESULT; 
 				break;
 			default: 
 				debugLevel = DebugLevel.NONE; 

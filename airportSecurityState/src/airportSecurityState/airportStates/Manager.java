@@ -1,6 +1,9 @@
 package airportSecurityState.airportStates;
 
+import java.io.IOException;
+
 import airportSecurityState.util.FileProcessor;
+import airportSecurityState.util.MyLogger;
 import airportSecurityState.util.Results;
 
 public class Manager {
@@ -65,12 +68,13 @@ public class Manager {
 
 	public Manager(FileProcessor fpIn, Results resIn) {
 		
+		MyLogger.writeMessage("Constructor of Manager called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.fp=fpIn;
 		this.res= resIn;
 		cal= new Calculations();
-		high = new HighRisk(this,res);
 		low = new LowRisk(this,res);
 		moderate = new ModerateRisk(this,res);
+		high = new HighRisk(this,res);
 		currentState=low;
 		
 		
@@ -90,11 +94,20 @@ public class Manager {
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			MyLogger.writeMessage("Exception occured in start method of Manager class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+			System.exit(1);
 		}
 		finally
 		{
-			
+			try {
+				
+				fp.close();
+			}
+			catch(Exception e)
+			{
+				MyLogger.writeMessage("Exception occured while closing FileProcessor object in Manager class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+				System.exit(1);
+			}
 		}
 		
 		

@@ -4,14 +4,17 @@ package airportSecurityState.airportStates;
 import airportSecurityState.util.MyLogger;
 public class Calculations implements AirportContextI {
 
-	public int noOfLine=0;
-	public int noOfDays=0;
-	public int noOfProhibitedItems=0;
+	public int noOfLine;
+	public int noOfDays;
+	public int noOfProhibitedItems;
 	float avgTrafficPerDay;
     float avgProhibitedItemsPerDay;
 	
 	public Calculations() {
-		// TODO Auto-generated constructor stub
+		MyLogger.writeMessage("Constructor of Calculations called ", MyLogger.DebugLevel.CONSTRUCTOR);
+		this.noOfLine=0;
+		this.noOfDays=0;
+		this.noOfProhibitedItems=0;
 	}
 	
 	
@@ -80,6 +83,7 @@ public class Calculations implements AirportContextI {
 						||part[3].equals("EndangeredAnimals"))
 				{
 					setNoOfProhibitedItems((getNoOfProhibitedItems()+1));
+					MyLogger.writeMessage("Prohibited item "+part[3]+" was found with passenger "+getNoOfLine()+"", MyLogger.DebugLevel.PROHIBITED_ITEMS);
 					
 				}
 			}

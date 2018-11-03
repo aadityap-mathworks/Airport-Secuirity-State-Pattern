@@ -2,7 +2,6 @@ package airportSecurityState.driver;
 
 import java.io.File;
 
-import airportSecurityState.airportStates.Calculations;
 import airportSecurityState.airportStates.Manager;
 import airportSecurityState.util.FileProcessor;
 import airportSecurityState.util.MyLogger;
@@ -40,14 +39,25 @@ public class Driver {
 			File file1 = new File(args[0]);
 			if (!file1.exists()) 
 			{
-				System.out.println("Input file does not exist.");
+				System.err.println("Input file does not exist.");
 				System.exit(1);
 			}
 			else if(file1.length() == 0)
 			{
-				System.out.println("input file is empty.");
+				System.err.println("input file is empty.");
 				System.exit(1);
 			}
+			
+			
+			File file2 = new File(args[1]);
+			if (file2.exists()) 
+			{
+				if(file2.length() != 0)
+				{
+					System.err.println("output file is not empty.");
+					System.exit(1);
+				}
+			}		
 			
 			
 			/**
@@ -62,6 +72,7 @@ public class Driver {
 			Results res = new Results(outputFile);
 			Manager ap= new Manager(fp,res);
 			ap.start();
+			res.displayStdOut("Output");
 			res.writeToFile();
 		}
 		catch (Exception e) {

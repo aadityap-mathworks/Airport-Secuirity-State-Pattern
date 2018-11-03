@@ -31,15 +31,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	public void setOutputFile(String outputFile) {
 		this.outputFile = outputFile;
 	}
- 
-	/**
-	 * Constructor
-	 *
-	 */
-	public Results()
-	{
-		
-	}
+
 	
 	/**
 	 * Constructor
@@ -48,6 +40,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	 */
 	public Results(String fileName)
 	{
+		MyLogger.writeMessage("Constructor of Results called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		setOutputFile(fileName);
 	}
 
@@ -58,6 +51,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	public void addToFinalResult(String res)
 	{
 		finalList.add(res);
+		MyLogger.writeMessage("Entry is made in Result with "+res+"", MyLogger.DebugLevel.ENTRY_IN_RESULT);
 	}
 	
 	/**
@@ -79,7 +73,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 			}
 		}
 		catch (Exception e){
-			e.printStackTrace();
+			MyLogger.writeMessage("Exception occured in writeToFile of Results class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+			System.exit(1);
 		}
 		finally {
 			try {
@@ -88,7 +83,9 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 			}
 			catch(IOException ex)
 			{
-				ex.printStackTrace();
+				MyLogger.writeMessage("Exception occured while closing file writer "
+						+ "in writeToFile of Results class \n"+ex.toString(), MyLogger.DebugLevel.NONE);
+				System.exit(1);
 			}
 		}
 		
@@ -100,7 +97,20 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	 */
 	public void displayStdOut(String s) 
 	{
-		System.out.println(s+finalList);
+		try {
+			
+			MyLogger.writeMessage(s+":", MyLogger.DebugLevel.NONE);
+			for(int i =0 ; i<finalList.size();i++)
+			{	
+				MyLogger.writeMessage(finalList.get(i), MyLogger.DebugLevel.NONE);
+			}
+		}
+		catch(Exception e)
+		{
+			MyLogger.writeMessage("Exception occured in displayStdOut of Results class \n"+e.toString(), MyLogger.DebugLevel.NONE);
+			System.exit(1);
+		}
+		finally {}
 	}
 	
 	/**
