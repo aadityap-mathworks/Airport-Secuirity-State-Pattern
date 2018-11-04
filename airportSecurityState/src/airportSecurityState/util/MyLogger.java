@@ -1,12 +1,21 @@
 package airportSecurityState.util;
+/**
+ * @author Aaditya Sakharam Patil
+ *
+ */
 
 public class MyLogger {
 
+	/**
+	 * Constructor
+	 */
 	private MyLogger() {
 		MyLogger.writeMessage("Constructor of MyLogger called ", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 	
-
+	/**
+	 * Enum for debugLevel
+	 */
     public static enum DebugLevel { NONE ,
     	ENTRY_IN_RESULT, 
     	STATE_CHANGE,
@@ -15,6 +24,10 @@ public class MyLogger {
 
     private static DebugLevel debugLevel;
    
+    /**
+     * method to set debug value
+     * @param level integer
+     */
     public static void setDebugValue (int levelIn) {
 		switch (levelIn) 
 		{
@@ -36,16 +49,27 @@ public class MyLogger {
 		}
     }
 
+    /**
+     * method to set debug value
+     * @param level integer
+     */
     public static void setDebugValue (DebugLevel levelIn) {
 	debugLevel = levelIn;
     }
 
+    /**
+     * method to write message
+     * @param message and debug level
+     */
     public static void writeMessage (String     message  ,
                                      DebugLevel levelIn ) {
 	if (levelIn == debugLevel)
 	    System.out.println(message);
     }
 
+    /**
+     * toString method
+     */
     public String toString() {
 	return "The debug level has been set to the following " + debugLevel;
     }

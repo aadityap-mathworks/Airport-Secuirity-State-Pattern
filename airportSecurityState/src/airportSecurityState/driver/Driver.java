@@ -48,7 +48,11 @@ public class Driver {
 				System.exit(1);
 			}
 			
-			
+			/**
+			 *argument validation
+			 *check if output file exists
+			 *check if file is empty
+			 */
 			File file2 = new File(args[1]);
 			if (file2.exists()) 
 			{
@@ -67,11 +71,31 @@ public class Driver {
 			String outputFile = args[1];
 			int debugLevel = Integer.parseInt(args[2]);
 			
+			/**
+			 * Setting debug value
+			 */
 			MyLogger.setDebugValue(debugLevel);
+			
+			/**
+			 * Creating instances of FileProcessor, Results
+			 */
 			FileProcessor fp= new FileProcessor(inputFile);
 			Results res = new Results(outputFile);
+			
+			/**
+			 * Creating instances of Manager
+			 * @param instances of FileProcessor, Results
+			 */
 			Manager ap= new Manager(fp,res);
+			
+			/**
+			 * Calling start method of Manager
+			 */
 			ap.start();
+			
+			/**
+			 * Calling methods of Results class to write output
+			 */
 			res.displayStdOut("Output");
 			res.writeToFile();
 		}

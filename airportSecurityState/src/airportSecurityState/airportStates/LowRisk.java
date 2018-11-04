@@ -26,13 +26,7 @@ public class LowRisk implements AirportStateI  {
 			averageTrafficPerDay= cal.getAvgTrafficPerDay();
 			averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
 			
-			if((averageTrafficPerDay>=8) || (averageProhibitedItemsPerDay>=4))
-			{
-				currentState.setCurrentState(currentState.getHigh());
-				res.addToFinalResult(opIdHigh);
-				MyLogger.writeMessage("State changed to HighRisk ", MyLogger.DebugLevel.STATE_CHANGE);
-			}
-			else if((averageTrafficPerDay>=4 && averageTrafficPerDay<8)
+			 if((averageTrafficPerDay>=4 && averageTrafficPerDay<8)
 					||(averageProhibitedItemsPerDay>=2 && averageProhibitedItemsPerDay<4))
 			{
 				currentState.setCurrentState(currentState.getModerate());
@@ -40,8 +34,7 @@ public class LowRisk implements AirportStateI  {
 				MyLogger.writeMessage("State changed to ModerateRisk ", MyLogger.DebugLevel.STATE_CHANGE);
 				
 			}
-			else if((averageTrafficPerDay>=0 && averageTrafficPerDay<4)
-					||(averageProhibitedItemsPerDay>=0 && averageProhibitedItemsPerDay<2))
+			else 
 			{
 				currentState.setCurrentState(currentState.getLow());
 				res.addToFinalResult(opIdLow);

@@ -46,7 +46,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
 	/**
 	 * method to store results
-	 *
+	 * @param String 
 	 */
 	public void addToFinalResult(String res)
 	{
@@ -122,7 +122,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 		finalList.clear();
 	}
 
-	
+
+
 	/**
 	 * hashCode()
 	 */
@@ -133,14 +134,16 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 		result = prime * result + ((outputFile == null) ? 0 : outputFile.hashCode());
 		return result;
 	}
-	
+
+
 	/**
 	 * toString() method
 	 */
 	@Override
 	public String toString() {
-		return "Results [outputFile=" + outputFile + ", getOutputFile()=" + getOutputFile() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "Results [outputFile=" + outputFile + "]";
 	}
+
+	
 	
 }

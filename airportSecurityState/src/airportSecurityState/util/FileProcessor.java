@@ -16,6 +16,7 @@ public class FileProcessor
 	
 	/**
 	 *To process a file
+	 *create a inputReader
 	 *@param filename
 	 */
 	public FileProcessor(String filename)
