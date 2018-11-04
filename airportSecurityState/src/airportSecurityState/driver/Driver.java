@@ -2,7 +2,7 @@ package airportSecurityState.driver;
 
 import java.io.File;
 
-import airportSecurityState.airportStates.Manager;
+import airportSecurityState.airportStates.Airport;
 import airportSecurityState.util.FileProcessor;
 import airportSecurityState.util.MyLogger;
 import airportSecurityState.util.Results;
@@ -83,13 +83,13 @@ public class Driver {
 			Results res = new Results(outputFile);
 			
 			/**
-			 * Creating instances of Manager
+			 * Creating instances of Airport
 			 * @param instances of FileProcessor, Results
 			 */
-			Manager ap= new Manager(fp,res);
+			Airport ap= new Airport(fp,res);
 			
 			/**
-			 * Calling start method of Manager
+			 * Calling start method of Airport
 			 */
 			ap.start();
 			

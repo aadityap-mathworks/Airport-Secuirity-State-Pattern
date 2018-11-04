@@ -5,44 +5,42 @@ import airportSecurityState.util.Results;
 
 public class ModerateRisk implements AirportStateI {
 	
-	Manager currentState;
-	Results res;
-	Calculations cal;
-	float averageProhibitedItemsPerDay;
-	float averageTrafficPerDay;
+	private Airport currentState;
+	private Results res;
+	private float averageProhibitedItemsPerDay;
+	private float averageTrafficPerDay;
 		
-	public ModerateRisk(Manager currentStateIn, Results resIn,Calculations calIn) {
+	public ModerateRisk(Airport currentStateIn, Results resIn) {
 		MyLogger.writeMessage("Constructor of ModerateRisk called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.currentState = currentStateIn;
 		this.res= resIn;
-        this.cal= calIn;
 	}
 
 	@Override
 	public void increaseOrDecreaseSecurity(String currentline) 
 	{
 		try {
-			cal.getMetrics(currentline);	
-			averageTrafficPerDay= cal.getAvgTrafficPerDay();
-			averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
+			currentState.getMetrics(currentline);	
+			averageTrafficPerDay= currentState.getAvgTrafficPerDay();
+			averageProhibitedItemsPerDay= currentState.getAvgProhibitedItemsPerDay();
 			
 			if((averageTrafficPerDay>=8) || (averageProhibitedItemsPerDay>=4))
 			{
-				currentState.setCurrentState(currentState.getHigh());
+				currentState.setState(currentState.getHigh());
 				res.addToFinalResult(opIdHigh);
 				MyLogger.writeMessage("State changed to HighRisk ", MyLogger.DebugLevel.STATE_CHANGE);
 			}
 			else if((averageTrafficPerDay>=4 && averageTrafficPerDay<8)
 					||(averageProhibitedItemsPerDay>=2 && averageProhibitedItemsPerDay<4))
 			{
-				currentState.setCurrentState(currentState.getModerate());
+				currentState.setState(currentState.getModerate());
 				res.addToFinalResult(opIdMod);
 				
 			}
 			else if((averageTrafficPerDay>=0 && averageTrafficPerDay<4)
 					||(averageProhibitedItemsPerDay>=0 && averageProhibitedItemsPerDay<2))
 			{
-				currentState.setCurrentState(currentState.getLow());
+				currentState.setState(currentState.getLow());
 				res.addToFinalResult(opIdLow);
 				MyLogger.writeMessage("State changed to LowRisk ", MyLogger.DebugLevel.STATE_CHANGE);
 			}

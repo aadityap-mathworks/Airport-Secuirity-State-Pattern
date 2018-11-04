@@ -5,38 +5,36 @@ import airportSecurityState.util.Results;
 
 public class LowRisk implements AirportStateI  {
 
-	Manager currentState;
-	Results res;
-	Calculations cal;
-	float averageProhibitedItemsPerDay;
-	float averageTrafficPerDay;
+	private Airport currentState;
+	private Results res;
+	private float averageProhibitedItemsPerDay;
+	private float averageTrafficPerDay;
 		
-	public LowRisk(Manager currentStateIn, Results resIn, Calculations calIn) {
+		
+	public LowRisk(Airport currentStateIn, Results resIn) {
 		MyLogger.writeMessage("Constructor of LowRisk called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.currentState = currentStateIn;
 		this.res= resIn;
-		this.cal=calIn;
-        
 	}
 	@Override
 	public void increaseOrDecreaseSecurity(String currentline) {
 		
 		try {
-			cal.getMetrics(currentline);	
-			averageTrafficPerDay= cal.getAvgTrafficPerDay();
-			averageProhibitedItemsPerDay= cal.getAvgProhibitedItemsPerDay();
+			currentState.getMetrics(currentline);	
+			averageTrafficPerDay= currentState.getAvgTrafficPerDay();
+			averageProhibitedItemsPerDay= currentState.getAvgProhibitedItemsPerDay();
 			
 			 if((averageTrafficPerDay>=4 && averageTrafficPerDay<8)
 					||(averageProhibitedItemsPerDay>=2 && averageProhibitedItemsPerDay<4))
 			{
-				currentState.setCurrentState(currentState.getModerate());
+				currentState.setState(currentState.getModerate());
 				res.addToFinalResult(opIdMod);
 				MyLogger.writeMessage("State changed to ModerateRisk ", MyLogger.DebugLevel.STATE_CHANGE);
 				
 			}
 			else 
 			{
-				currentState.setCurrentState(currentState.getLow());
+				currentState.setState(currentState.getLow());
 				res.addToFinalResult(opIdLow);
 			}
 		}
