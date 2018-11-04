@@ -1,5 +1,8 @@
 package airportSecurityState.airportStates;
-
+/**
+ * @author Aaditya Sakharam Patil
+ *
+ */
 import airportSecurityState.util.MyLogger;
 import airportSecurityState.util.Results;
 
@@ -11,6 +14,11 @@ public class HighRisk implements AirportStateI {
 	private float averageTrafficPerDay;
 		
 		
+	/**
+	 * Constructor
+	 * sets Airport, Results instances
+	 * @param insatnces of Airport, Results classes
+	 */
 	public HighRisk(Airport currentStateIn, Results resIn) {
 		MyLogger.writeMessage("Constructor of HighRisk called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.res= resIn;
@@ -18,6 +26,12 @@ public class HighRisk implements AirportStateI {
 		
 	}
 
+	/**
+	 * Method to change Security states 
+	 * checks the metrics values and increases or decreases security state
+	 * @param Line from input file
+	 *
+	 */
 	@Override
 	public void increaseOrDecreaseSecurity(String currentline) 
 	{
@@ -25,7 +39,6 @@ public class HighRisk implements AirportStateI {
 			currentState.getMetrics(currentline);	
 			averageTrafficPerDay= currentState.getAvgTrafficPerDay();
 			averageProhibitedItemsPerDay= currentState.getAvgProhibitedItemsPerDay();
-			
 			
 			if((averageTrafficPerDay>=8) || (averageProhibitedItemsPerDay>=4))
 			{ 

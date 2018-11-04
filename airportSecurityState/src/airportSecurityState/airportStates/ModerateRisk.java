@@ -1,5 +1,8 @@
 package airportSecurityState.airportStates;
-
+/**
+ * @author Aaditya Sakharam Patil
+ *
+ */
 import airportSecurityState.util.MyLogger;
 import airportSecurityState.util.Results;
 
@@ -10,12 +13,24 @@ public class ModerateRisk implements AirportStateI {
 	private float averageProhibitedItemsPerDay;
 	private float averageTrafficPerDay;
 		
+	/**
+	 * Constructor
+	 * sets Airport, Results instances
+	 * @param insatnces of Airport, Results classes
+	 */
 	public ModerateRisk(Airport currentStateIn, Results resIn) {
 		MyLogger.writeMessage("Constructor of ModerateRisk called ", MyLogger.DebugLevel.CONSTRUCTOR);
 		this.currentState = currentStateIn;
 		this.res= resIn;
 	}
 
+	
+	/**
+	 * Method to change Security states 
+	 * checks the metrics values and increases or decreases security state
+	 * @param Line from input file
+	 *
+	 */
 	@Override
 	public void increaseOrDecreaseSecurity(String currentline) 
 	{

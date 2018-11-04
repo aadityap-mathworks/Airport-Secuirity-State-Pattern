@@ -68,8 +68,15 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 			out= new File(outputFile);
 			fw = new FileWriter(out);
 			for(int i =0 ; i<finalList.size();i++)
-			{				
-				fw.write(finalList.get(i)+"\n");
+			{	
+				if(i!=(finalList.size()-1))
+				{
+					fw.write(finalList.get(i)+"\n");
+				}
+				else
+				{
+					fw.write(finalList.get(i));
+				}
 			}
 		}
 		catch (Exception e){
