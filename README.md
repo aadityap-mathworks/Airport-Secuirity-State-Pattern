@@ -39,7 +39,6 @@ DEBUG_VALUE=3 [Prints to stdout everytime prohibited item is found]
 DEBUG_VALUE=2 [Prints to stdout everytime a state is changesd]
 DEBUG_VALUE=1 [Prints to stdout everytime an entry is made to Results]
 DEBUG_VALUE=0 [Prints output or errors/exceptions to stdout]
-
 -----------------------------------------------------------------------
 ## Description:
 Airport is context class which has a start() method which reads line 

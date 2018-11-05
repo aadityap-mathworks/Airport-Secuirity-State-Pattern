@@ -231,15 +231,17 @@ public class Airport implements AirportContextI{
 			setNoOfDays(Integer.parseInt(part[1]));
 			
 			//check if passenger is traveling without any item
-			if(!(part.length<4))
+			if(part.length<4)
 			{
-				if(part[3].equals("Grains")||part[3].equals("NailCutters")||part[3].equals("Plants")
-						||part[3].equals("EndangeredAnimals"))
-				{
-					setNoOfProhibitedItems((getNoOfProhibitedItems()+1));
-					MyLogger.writeMessage("Prohibited item "+part[3]+" was found with passenger "+getNoOfLine()+"", MyLogger.DebugLevel.PROHIBITED_ITEMS);
-					
-				}
+				MyLogger.writeMessage("invalid input File", MyLogger.DebugLevel.NONE);
+				System.exit(1);
+			}
+			if(part[3].equals("Grains")||part[3].equals("NailCutters")||part[3].equals("Plants")
+					||part[3].equals("EndangeredAnimals"))
+			{
+				setNoOfProhibitedItems((getNoOfProhibitedItems()+1));
+				MyLogger.writeMessage("Prohibited item "+part[3]+" was found with passenger "+getNoOfLine()+"", MyLogger.DebugLevel.PROHIBITED_ITEMS);
+				
 			}
 			
 			//calculate averageTrafficPerDay

@@ -72,6 +72,16 @@ public class Driver {
 			int debugLevel = Integer.parseInt(args[2]);
 			
 			/**
+			 *argument validation
+			 *check if the debug value is between 0 to 4
+			 */
+			if(debugLevel<0 || debugLevel>4)
+			{
+				System.err.println("Error: Wrong debug value. \n It must be between 0 to 4");
+				System.exit(1);
+			}
+			
+			/**
 			 * Setting debug value
 			 */
 			MyLogger.setDebugValue(debugLevel);
