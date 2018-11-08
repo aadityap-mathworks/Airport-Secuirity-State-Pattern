@@ -70,4 +70,25 @@ public class ModerateRisk implements AirportStateI {
 		}
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(averageProhibitedItemsPerDay);
+		result = prime * result + Float.floatToIntBits(averageTrafficPerDay);
+		result = prime * result + ((currentState == null) ? 0 : currentState.hashCode());
+		result = prime * result + ((res == null) ? 0 : res.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ModerateRisk [currentState=" + currentState + ", res=" + res + ", averageProhibitedItemsPerDay="
+				+ averageProhibitedItemsPerDay + ", averageTrafficPerDay=" + averageTrafficPerDay + "]";
+	}
+	
+	
+
 }

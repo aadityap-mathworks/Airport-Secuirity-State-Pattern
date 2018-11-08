@@ -75,5 +75,18 @@ public class FileProcessor
 	    	}
 	    	finally {}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((inputReader == null) ? 0 : inputReader.hashCode());
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "FileProcessor [inputReader=" + inputReader + "]";
+	}
 	
 }

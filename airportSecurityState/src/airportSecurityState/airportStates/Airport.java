@@ -263,6 +263,33 @@ public class Airport implements AirportContextI{
 		}
 		
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(avgProhibitedItemsPerDay);
+		result = prime * result + Float.floatToIntBits(avgTrafficPerDay);
+		result = prime * result + ((currentState == null) ? 0 : currentState.hashCode());
+		result = prime * result + ((fp == null) ? 0 : fp.hashCode());
+		result = prime * result + ((high == null) ? 0 : high.hashCode());
+		result = prime * result + ((low == null) ? 0 : low.hashCode());
+		result = prime * result + ((moderate == null) ? 0 : moderate.hashCode());
+		result = prime * result + noOfDays;
+		result = prime * result + noOfLine;
+		result = prime * result + noOfProhibitedItems;
+		result = prime * result + ((res == null) ? 0 : res.hashCode());
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "Airport [high=" + high + ", moderate=" + moderate + ", low=" + low + ", currentState=" + currentState
+				+ ", fp=" + fp + ", res=" + res + ", noOfLine=" + noOfLine + ", noOfDays=" + noOfDays
+				+ ", noOfProhibitedItems=" + noOfProhibitedItems + ", avgTrafficPerDay=" + avgTrafficPerDay
+				+ ", avgProhibitedItemsPerDay=" + avgProhibitedItemsPerDay + "]";
+	}
+	
 	
 
 }
